@@ -1,0 +1,91 @@
+# 観測してはいけない女｜作品公式LP
+
+罵尻ロマ子様制作のホラーノベルゲーム『観測してはいけない女』の、作品公式ランディングページです。
+
+依存関係のない静的な HTML / CSS / JavaScript で作っています。ビルドは不要です。
+
+## ローカルで確認する
+
+`index.html` をブラウザで直接開いても表示できます。ローカルサーバーで確認する場合は、次のいずれかを使ってください。
+
+```bash
+# Node.js がある場合
+npx serve .
+
+# Python がある場合
+python -m http.server 8080
+```
+
+表示されたURL（例: `http://localhost:8080`）を開きます。
+
+CSSを変更したのに見た目が変わらないときは、ブラウザのキャッシュが残っています。`Ctrl` + `F5` で再読み込みしてください。
+
+## GitHub Pages で公開する
+
+`main` ブランチの直下を、そのまま公開する構成です。
+
+1. GitHub でリポジトリを作成します（GitHub Pages を無料で使う場合は Public にします）
+2. リモートを登録して push します
+
+   ```bash
+   git remote add origin https://github.com/<ユーザー名>/<リポジトリ名>.git
+   git push -u origin main
+   ```
+
+3. リポジトリの **Settings** → **Pages** を開きます
+4. Source を「Deploy from a branch」、Branch を `main` / `/ (root)` にして Save します
+
+数分後、`https://<ユーザー名>.github.io/<リポジトリ名>/` で公開されます。以降は `git push` するたびに自動で更新されます。
+
+`.nojekyll` は、GitHub Pages が既定で走らせる Jekyll の処理を止めるための空ファイルです。削除しないでください。
+
+## ファイル構成
+
+| ファイル | 役割 |
+|---|---|
+| `index.html` | ページ本体 |
+| `styles.css` | スタイル |
+| `config.js` | キャンペーン段階と外部URL |
+| `script.js` | CTAの切り替え、Special Thanksの描画、クリック計測 |
+| `supporters.js` | Special Thanks 掲載名の配列 |
+| `assets/` | 画像 |
+
+## 公開前に設定する
+
+`config.js` を開き、次を差し替えます。
+
+- `phase`: `pre_register` / `free_released` / `full_release`
+- `substack`: Substack登録URL
+- `freeGame`: 体験版のプレイURL
+- `boothProduct`: BOOTHの商品個別URL
+
+`phase` を変えると、ページ内の主CTAと説明文が自動で切り替わります。
+
+URLが未設定のまま（空、または `REPLACE-WITH` を含む）の場合、CTAは遷移せず注意を表示します。`boothProduct` が未設定のときは `boothShop` へ自動で切り替わります。
+
+## 販売プラン
+
+- **体験版**：無料。ノーマルエンドのみ収録
+- **通常版**：810円（税込）。マルチエンディング全編プレイ可能
+- **フルボイス版**：8,100円（税込）。マルチエンディング＋ロマ子様フルボイス＋特典（解説会参加権・クレジット名前記載）
+- **全力応援版**：11,810円（税込）。フルボイス版の内容＋ロマ子様直筆デジタルメッセージ＋限定ASMRボイス「観測しちゃダメ！！」（約20分）
+
+## Special Thanks の運用
+
+フルボイス版・全力応援版購入者のうち、掲載を希望した方の表記名を、ページ最下部の「Special Thanks」エリアへ掲載します。
+
+- 名前は `supporters.js` の `supporters` 配列で管理します（HTMLへ直接書き込みません）
+- 購入者を追加するときは、配列へ1行追記するだけです
+- 配列に書いた順番が、そのまま表示順になります（自動並べ替え・重複削除はしません）
+- 掲載前に、本人の掲載希望と表記名を必ず確認してください
+- 不適切な表記や第三者の権利を侵害するおそれのある名前は掲載しません
+- 掲載希望者がまだいない間は、配列を空のままにしておきます
+
+## 素材の対応
+
+- `top-picture.png`：ファーストビューの背景
+- `icon.png`：罵尻ロマ子様のアイコン
+- `stream-aircon.png`：部屋の音を言い当てる場面
+- `voice-playback.png`：異常な再生待機
+- `corridor.png`：購入者特典
+- `door.png`：最後のCTA

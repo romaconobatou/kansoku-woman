@@ -1,0 +1,17 @@
+# Claude Code のローカル設定
+.claude/
+
+# Netlify へアップロードするための複製。
+# GitHub Pages はリポジトリ直下を公開するため、二重管理をやめる。
+publish/
+
+# 内部資料。公開リポジトリには載せない。
+# 公開してよい場合は、以下の3行を削除してから git add する。
+CLAUDE.md
+CONTENT_NOTES.md
+.project-status.json
+
+# OS が作る一時ファイル
+.DS_Store
+Thumbs.db
+desktop.ini
