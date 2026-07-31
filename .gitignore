@@ -5,6 +5,10 @@
 # GitHub Pages はリポジトリ直下を公開するため、二重管理をやめる。
 publish/
 
+# 旧NetlifyサイトをGitHub Pagesへ転送するためのファイル一式。
+# Netlifyへ手動デプロイする用途で、GitHub Pages側には不要。
+netlify-redirect/
+
 # 内部資料。公開リポジトリには載せない。
 # 公開してよい場合は、以下の3行を削除してから git add する。
 CLAUDE.md
