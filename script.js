@@ -2,16 +2,26 @@
   const config = window.KANSOKU_CONFIG || {};
   const urls = config.urls || {};
 
-  // 体験版の公開時刻を過ぎたら、pre_register から free_released へ自動で進める。
-  // 判定は閲覧者の端末時計。既に先の段階が設定されている場合は巻き戻さない。
+  // 公開時刻を過ぎたら、その段階へ自動で進める。判定は閲覧者の端末時計。
+  // 進めるだけで、設定済みの段階を巻き戻すことはしない。
+  const PHASE_ORDER = ["pre_register", "free_released", "full_release"];
+
   const resolvePhase = () => {
     const base = config.phase || "pre_register";
-    if (base !== "pre_register" || !config.freeReleaseAt) return base;
 
-    const releaseAt = Date.parse(config.freeReleaseAt);
-    if (Number.isNaN(releaseAt)) return base;
+    const hasPassed = (value) => {
+      if (!value) return false;
+      const at = Date.parse(value);
+      return !Number.isNaN(at) && Date.now() >= at;
+    };
 
-    return Date.now() >= releaseAt ? "free_released" : base;
+    const advance = (current, next, at) =>
+      hasPassed(at) && PHASE_ORDER.indexOf(next) > PHASE_ORDER.indexOf(current) ? next : current;
+
+    let resolved = advance(base, "free_released", config.freeReleaseAt);
+    resolved = advance(resolved, "full_release", config.fullReleaseAt);
+
+    return resolved;
   };
 
   const phase = resolvePhase();
