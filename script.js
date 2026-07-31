@@ -1,7 +1,20 @@
 (() => {
   const config = window.KANSOKU_CONFIG || {};
-  const phase = config.phase || "pre_register";
   const urls = config.urls || {};
+
+  // 体験版の公開時刻を過ぎたら、pre_register から free_released へ自動で進める。
+  // 判定は閲覧者の端末時計。既に先の段階が設定されている場合は巻き戻さない。
+  const resolvePhase = () => {
+    const base = config.phase || "pre_register";
+    if (base !== "pre_register" || !config.freeReleaseAt) return base;
+
+    const releaseAt = Date.parse(config.freeReleaseAt);
+    if (Number.isNaN(releaseAt)) return base;
+
+    return Date.now() >= releaseAt ? "free_released" : base;
+  };
+
+  const phase = resolvePhase();
 
   // 未設定・空文字・プレースホルダ（REPLACE-WITH）を弾く共通判定。
   const isUsableUrl = (url) => Boolean(url) && !url.includes("REPLACE-WITH");
@@ -37,7 +50,7 @@
       hero: {
         href: urls.freeGame,
         label: "体験版をプレイする",
-        note: "Substack読者限定で、体験版をノーマルエンドまで無料公開中です。"
+        note: "ブラウザですぐ遊べます。ノーマルエンドまで無料です。"
       },
       free: {
         href: urls.freeGame,
@@ -78,6 +91,27 @@
       }
     }
   };
+
+  // 体験版の入手方法の説明。CTAと同時に切り替えないと、案内が食い違う。
+  const phaseText = {
+    pre_register: {
+      freeAccess: "プレイURLは、罵尻ロマ子様のSubstack登録者へお届けします。",
+      faqAccess: "Substackへ登録すると、公開時にプレイURLが届きます。"
+    },
+    free_released: {
+      freeAccess: "下のボタンから、そのままプレイできます。",
+      faqAccess: "このページの「観測を始める」から、そのままプレイできます。"
+    },
+    full_release: {
+      freeAccess: "下のボタンから、そのままプレイできます。",
+      faqAccess: "このページの「体験版をプレイする」から、そのままプレイできます。"
+    }
+  };
+
+  document.querySelectorAll("[data-phase-text]").forEach((node) => {
+    const text = phaseText[phase]?.[node.dataset.phaseText];
+    if (text) node.textContent = text;
+  });
 
   document.querySelectorAll("[data-phase-slot]").forEach((slot) => {
     const key = slot.dataset.phaseSlot;
