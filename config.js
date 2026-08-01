@@ -19,7 +19,7 @@
  */
 window.KANSOKU_CONFIG = {
   phase: "pre_register",
-  freeReleaseAt: "2026-08-01T08:10:00+09:00",
+  freeReleaseAt: "2026-08-01T20:10:00+09:00",
   fullReleaseAt: "2026-08-10T00:00:00+09:00",
   urls: {
     substack: "https://romaco.substack.com/subscribe?next=https%3A%2F%2Fsubstack.com%2F%40romaco&utm_source=profile-page&utm_medium=web&utm_campaign=substack_profile&just_signed_up=true",
