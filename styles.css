@@ -549,6 +549,34 @@ h1 {
   letter-spacing: .06em;
 }
 
+.romaco-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .7rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.romaco-links a {
+  display: inline-block;
+  padding: .5rem 1.15rem;
+  border: 1px solid rgba(138, 112, 184, .5);
+  border-radius: 999px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: .82rem;
+  letter-spacing: .1em;
+  transition: border-color .2s ease, background .2s ease, transform .2s ease;
+}
+
+.romaco-links a:hover,
+.romaco-links a:focus-visible {
+  border-color: rgba(232, 237, 244, .9);
+  background: rgba(138, 112, 184, .18);
+  transform: translateY(-1px);
+}
+
 .product-info dl {
   margin: 0 0 2.5rem;
 }
