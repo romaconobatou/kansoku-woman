@@ -6,5 +6,8 @@
  * 追加するときは、supporters配列へ1行足すだけで公開ページへ反映されます。
  */
 window.KANSOKU_SUPPORTERS = {
-  supporters: []
+  supporters: [
+    "しんご様",
+    "はげだんご様"
+  ]
 };
