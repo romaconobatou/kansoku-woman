@@ -9,6 +9,7 @@ window.KANSOKU_SUPPORTERS = {
   supporters: [
     "しんご様",
     "はげだんご様",
-    "らびねこ様"
+    "らびねこ様",
+    "ふにゃーん様"
   ]
 };
