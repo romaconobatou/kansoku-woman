@@ -172,6 +172,102 @@
     supportersList.replaceChildren(grid);
   }
 
+  // サンプルボイス。フルボイス版の価値を、買う前に聞いて確かめてもらうための試聴。
+  // 自動再生はしない。再生は、必ず利用者のクリック（またはEnter/Space）から始まる。
+  const voicePlayer = document.querySelector("[data-voice-player]");
+
+  if (voicePlayer) {
+    const audio = voicePlayer.querySelector("[data-voice-audio]");
+    const ui = voicePlayer.querySelector("[data-voice-ui]");
+    const toggle = voicePlayer.querySelector("[data-voice-toggle]");
+    const label = voicePlayer.querySelector("[data-voice-label]");
+    const fill = voicePlayer.querySelector("[data-voice-progress]");
+    const currentTime = voicePlayer.querySelector("[data-voice-time]");
+    const duration = voicePlayer.querySelector("[data-voice-duration]");
+
+    // ここへ来られた時点でJSは動く。既定のコントロールを、自前のUIへ差し替える。
+    // JSが動かない環境では controls が残るため、試聴そのものは失われない。
+    if (audio && ui && toggle && label) {
+      audio.removeAttribute("controls");
+      ui.hidden = false;
+
+      const PLAY_LABEL = "サンプルを再生する";
+      const PAUSE_LABEL = "停止する";
+
+      const formatTime = (seconds) => {
+        if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
+        const whole = Math.floor(seconds);
+        return `${Math.floor(whole / 60)}:${String(whole % 60).padStart(2, "0")}`;
+      };
+
+      const paint = () => {
+        const ratio = audio.duration > 0 ? audio.currentTime / audio.duration : 0;
+        if (fill) fill.style.width = `${Math.min(ratio, 1) * 100}%`;
+        if (currentTime) currentTime.textContent = formatTime(audio.currentTime);
+      };
+
+      const showPaused = () => {
+        voicePlayer.dataset.state = "paused";
+        label.textContent = PLAY_LABEL;
+      };
+
+      showPaused();
+
+      // preload="none" のため、長さは再生を始めるまで分からない。
+      // HTMLに書いた目安の秒数を、実際の値が分かった時点で上書きする。
+      audio.addEventListener("loadedmetadata", () => {
+        if (duration) duration.textContent = formatTime(audio.duration);
+        paint();
+      });
+
+      audio.addEventListener("timeupdate", paint);
+
+      // 試聴した人数を見るための計測。1回の閲覧につき1回だけ送る。
+      // CTAクリックとは別のイベント名にして、CTAの数値を混ぜない。
+      let hasTracked = false;
+
+      audio.addEventListener("play", () => {
+        voicePlayer.dataset.state = "playing";
+        label.textContent = PAUSE_LABEL;
+
+        if (hasTracked) return;
+        hasTracked = true;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: "lp_voice_play", location: "voice_sample" });
+      });
+
+      audio.addEventListener("pause", showPaused);
+
+      audio.addEventListener("ended", () => {
+        showPaused();
+        audio.currentTime = 0;
+        paint();
+      });
+
+      audio.addEventListener("error", () => {
+        showPaused();
+        label.textContent = "音声を読み込めません";
+        toggle.disabled = true;
+      });
+
+      toggle.addEventListener("click", () => {
+        if (!audio.paused) {
+          audio.pause();
+          return;
+        }
+
+        // play() は Promise を返す。失敗しても例外を投げっぱなしにしない。
+        const started = audio.play();
+        if (started && typeof started.catch === "function") {
+          started.catch(() => {
+            showPaused();
+            label.textContent = "再生できません";
+          });
+        }
+      });
+    }
+  }
+
   // Analytics hook. Connect this to GA4, Plausible, or another tool before launch.
   document.addEventListener("click", (event) => {
     const target = event.target.closest("[data-event]");

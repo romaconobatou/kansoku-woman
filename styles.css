@@ -407,6 +407,158 @@ h1 {
   border: 1px solid var(--line);
 }
 
+/* サンプルボイス。フルボイス版の価値を、買う前に聞いて確かめてもらうためのブロック。 */
+.voice-sample {
+  margin-top: clamp(3rem, 8vw, 6rem);
+  padding: clamp(1.5rem, 5vw, 3rem);
+  border: 1px solid rgba(107, 169, 219, .34);
+  background: linear-gradient(135deg, rgba(15, 28, 42, .92), rgba(5, 8, 13, .96));
+}
+
+.voice-sample-heading h3 {
+  margin: .5rem 0 1.2rem;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-weight: 400;
+  font-size: clamp(1.35rem, 4vw, 1.9rem);
+  line-height: 1.65;
+}
+
+.voice-sample-lead {
+  margin: 0 0 2rem;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+/* JSが動いた時点で controls を外す。外れたら自前のUIだけを見せる。 */
+.voice-player-native:not([controls]) { display: none; }
+
+.voice-player-native[controls] {
+  width: 100%;
+  max-width: 30rem;
+}
+
+.voice-player-ui {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 1.8rem);
+}
+
+.voice-player-ui[hidden] { display: none; }
+
+.voice-player-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  flex-shrink: 0;
+  padding: .85rem 1.4rem;
+  border: 1px solid rgba(107, 169, 219, .65);
+  background: rgba(13, 30, 45, .88);
+  color: var(--text);
+  font-size: .9rem;
+  letter-spacing: .08em;
+  cursor: pointer;
+  transition: border-color .2s ease, background .2s ease, transform .2s ease;
+}
+
+.voice-player-toggle:hover,
+.voice-player-toggle:focus-visible {
+  border-color: rgba(232, 237, 244, .9);
+  background: rgba(19, 42, 62, .95);
+  transform: translateY(-1px);
+}
+
+.voice-player-toggle[disabled] {
+  opacity: .5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.voice-player-icon {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: .42rem 0 .42rem .68rem;
+  border-color: transparent transparent transparent var(--blue);
+}
+
+.voice-player[data-state="playing"] .voice-player-icon {
+  width: .62rem;
+  height: .84rem;
+  border-style: solid;
+  border-width: 0 .21rem;
+  border-color: var(--blue);
+}
+
+.voice-player-meter {
+  flex: 1 1 12rem;
+  min-width: 0;
+  max-width: 26rem;
+}
+
+.voice-player-track {
+  height: 2px;
+  background: rgba(137, 163, 193, .22);
+  overflow: hidden;
+}
+
+.voice-player-fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--blue);
+  transition: width .15s linear;
+}
+
+.voice-player-time {
+  margin: .6rem 0 0;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .7rem;
+  letter-spacing: .12em;
+}
+
+/* どのプランに声が入るかを、試聴のすぐ下で明示する。 */
+.voice-sample-scope {
+  margin: 2rem 0 0;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+  font-size: .84rem;
+  line-height: 1.85;
+}
+
+.voice-sample-scope strong {
+  color: #fff;
+  font-weight: 400;
+  border-bottom: 1px solid rgba(107, 169, 219, .55);
+}
+
+.voice-sample-note {
+  margin: .7rem 0 0;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .68rem;
+  letter-spacing: .12em;
+}
+
+/* プラン表から試聴ブロックへ戻る導線。 */
+.plan-sample {
+  margin: .9rem 0 0;
+  font-size: .78rem;
+}
+
+.plan-sample a {
+  color: var(--blue);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(107, 169, 219, .45);
+}
+
+.plan-sample a:hover,
+.plan-sample a:focus-visible {
+  color: #fff;
+  border-bottom-color: rgba(232, 237, 244, .9);
+}
+
 .bonus-grid h3 {
   font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
   font-weight: 400;

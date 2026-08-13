@@ -150,6 +150,43 @@
           <p>声によって、同じ場面の意味と距離まで変わっていきます。</p>
         </div>
       </div>
+
+      <div class="voice-sample" id="voice-sample">
+        <div class="voice-sample-heading">
+          <p class="section-number">VOICE SAMPLE</p>
+          <h3>その声を、<br>先に聞いてください。</h3>
+          <p class="voice-sample-lead">本編で使われている、罵尻ロマ子様の声のサンプルです。約28秒。イヤホンでの再生をおすすめします。</p>
+        </div>
+
+        <div class="voice-player" data-voice-player>
+          <!-- 自動再生はしない。JSが動かない環境では、この controls がそのまま残る。 -->
+          <audio class="voice-player-native" data-voice-audio preload="none" controls
+            src="./assets/voice/sample-voice.mp3">
+            <p>お使いのブラウザは音声の再生に対応していません。
+              <a href="./assets/voice/sample-voice.mp3">サンプルボイスを直接開く</a>
+            </p>
+          </audio>
+
+          <div class="voice-player-ui" data-voice-ui hidden>
+            <button class="voice-player-toggle" type="button" data-voice-toggle>
+              <span class="voice-player-icon" aria-hidden="true"></span>
+              <span data-voice-label>サンプルを再生する</span>
+            </button>
+
+            <div class="voice-player-meter">
+              <div class="voice-player-track" aria-hidden="true">
+                <span class="voice-player-fill" data-voice-progress></span>
+              </div>
+              <p class="voice-player-time">
+                <span data-voice-time>0:00</span> / <span data-voice-duration>0:28</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <p class="voice-sample-scope">この声が入るのは、<strong>フルボイス版（8,100円）</strong>と<strong>全力応援版（11,810円）</strong>です。体験版と通常版に、ボイスは付きません。</p>
+        <p class="voice-sample-note">ロマ子様にとって、初のフルボイス付きゲームです。</p>
+      </div>
     </section>
 
     <section class="section bonuses" id="bonuses" aria-labelledby="bonuses-title">
@@ -252,6 +289,7 @@
             <li>マルチエンディング全編プレイ可能</li>
             <li>ロマ子様によるフルボイス</li>
           </ul>
+          <p class="plan-sample"><a href="#voice-sample">声のサンプルを聞く</a></p>
           <p class="plan-bonus-heading">特典</p>
           <ul class="plan-features">
             <li>購入者限定ストーリー解説会への参加権（8月18日（火）22:00開催）</li>
@@ -280,11 +318,11 @@
           <dl>
             <div>
               <dt>発売日</dt>
-              <dd>8月10日「罵倒の日」（体験版は8月1日公開）</dd>
+              <dd>8月10日「罵倒の日」</dd>
             </div>
             <div>
               <dt>販売場所</dt>
-              <dd>罵尻ロマ子様 BOOTH（体験版はSubstackで案内）</dd>
+              <dd>罵尻ロマ子様 BOOTH</dd>
             </div>
             <div>
               <dt>プレイ時間</dt>
