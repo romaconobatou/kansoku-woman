@@ -15,6 +15,8 @@ window.KANSOKU_SUPPORTERS = {
     "Hisa様",
     "okady様",
     "バズーカ伯爵",
-    "Gen巨匠"
+    "Gen巨匠",
+    "なおきんぐ様",
+    "あややん様"
   ]
 };
