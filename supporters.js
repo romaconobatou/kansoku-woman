@@ -21,6 +21,7 @@ window.KANSOKU_SUPPORTERS = {
     "りょうたこ様",
     "たけ様",
     "かん様",
-    "BG様"
+    "BG様",
+    "佐藤良平様"
   ]
 };
