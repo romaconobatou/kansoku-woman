@@ -214,7 +214,11 @@ h1 {
 }
 
 .release-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 1rem;
+  text-align: center;
   background: rgba(5,8,13,.82);
 }
 
@@ -224,21 +228,15 @@ h1 {
 }
 
 .release-grid span {
-  color: var(--muted);
-  font-size: .72rem;
+  color: var(--text);
+  font-size: .9rem;
+  font-weight: 500;
 }
 
 .release-grid strong {
   margin-top: .25rem;
   font-size: .93rem;
   font-weight: 500;
-}
-
-.release-item--solo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
 }
 
 .release-item--solo strong {
@@ -309,6 +307,7 @@ h1 {
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: .08em;
+  text-wrap: balance;
 }
 
 /* デスクトップでは1行、幅が足りない場合のみ自然な2行に収まるよう専用に幅を広げる */
@@ -317,7 +316,6 @@ h1 {
 }
 
 .product-heading h2 {
-  text-wrap: balance;
   line-break: strict;
 }
 
@@ -516,6 +514,29 @@ h1 {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: .7rem;
   letter-spacing: .12em;
+}
+
+/* 開発裏話配信。本文を左、視聴条件を右に並べる。 */
+.devstory-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+  padding: clamp(1.5rem, 5vw, 3rem);
+  border: 1px solid rgba(107, 169, 219, .34);
+  background: linear-gradient(135deg, rgba(15, 28, 42, .92), rgba(5, 8, 13, .96));
+}
+
+.devstory-copy p:last-child { margin-bottom: 0; }
+
+.devstory-info dt {
+  font-size: .8rem;
+  letter-spacing: .06em;
+}
+
+.devstory-info dd {
+  font-size: .92rem;
+  line-height: 1.8;
 }
 
 /* どのプランに声が入るかを、試聴のすぐ下で明示する。 */
@@ -729,11 +750,12 @@ h1 {
   transform: translateY(-1px);
 }
 
-.product-info dl {
-  margin: 0 0 2.5rem;
+/* 「項目名：内容」の定義リスト。製品情報と開発裏話配信で共用する。 */
+.spec-list {
+  margin: 0;
 }
 
-.product-info dl div {
+.spec-list div {
   display: grid;
   grid-template-columns: 7rem 1fr;
   gap: 1rem;
@@ -741,8 +763,12 @@ h1 {
   border-bottom: 1px solid var(--line);
 }
 
-.product-info dt { color: var(--muted); }
-.product-info dd { margin: 0; }
+.spec-list dt { color: var(--muted); }
+.spec-list dd { margin: 0; }
+
+.product-info .spec-list {
+  margin-bottom: 2.5rem;
+}
 
 .product-note {
   color: var(--muted);
@@ -867,7 +893,8 @@ footer {
   .story-layout,
   .voice-layout,
   .romaco-panel,
-  .free-card {
+  .free-card,
+  .devstory-card {
     grid-template-columns: 1fr;
   }
 
@@ -899,7 +926,9 @@ footer {
 
   .release-grid strong { font-size: .84rem; }
 
-  .product-info dl div {
+  .release-grid span { font-size: .8rem; }
+
+  .spec-list div {
     grid-template-columns: 1fr;
     gap: .15rem;
   }
