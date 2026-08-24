@@ -539,6 +539,132 @@ h1 {
   line-height: 1.8;
 }
 
+/* 宣伝用ショート動画。縦長なので幅を絞り、説明と横並びにする。 */
+.devstory-teaser {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  gap: clamp(1.6rem, 5vw, 3.5rem);
+  align-items: center;
+  margin-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
+.devstory-short {
+  width: 100%;
+  max-width: 300px;
+}
+
+/* 押されるまでYouTubeを読み込まない、サムネイルだけの再生ボタン。 */
+.devstory-short-facade {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  padding: 0;
+  border: 1px solid rgba(107, 169, 219, .34);
+  background: #000;
+  color: var(--text);
+  cursor: pointer;
+  overflow: hidden;
+  transition: border-color .2s ease, transform .2s ease;
+}
+
+.devstory-short-facade img {
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(.82);
+  transition: filter .3s ease;
+}
+
+.devstory-short-facade:hover,
+.devstory-short-facade:focus-visible {
+  border-color: rgba(232, 237, 244, .9);
+  transform: translateY(-2px);
+}
+
+.devstory-short-facade:hover img,
+.devstory-short-facade:focus-visible img {
+  filter: brightness(1);
+}
+
+.devstory-short-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3.4rem;
+  height: 3.4rem;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(107, 169, 219, .7);
+  border-radius: 50%;
+  background: rgba(5, 8, 13, .62);
+}
+
+.devstory-short-play::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+  border-style: solid;
+  border-width: .48rem 0 .48rem .78rem;
+  border-color: transparent transparent transparent var(--blue);
+}
+
+.devstory-short-label {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1.6rem .8rem .7rem;
+  background: linear-gradient(transparent, rgba(5, 8, 13, .92) 55%);
+  font-size: .78rem;
+  letter-spacing: .06em;
+  text-align: center;
+}
+
+/* 再生後、上のボタンと差し替わるYouTubeプレイヤー。 */
+.devstory-short-frame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border: 1px solid rgba(107, 169, 219, .34);
+}
+
+.devstory-teaser-copy { max-width: 34rem; }
+
+.devstory-teaser-copy p { margin: 0 0 1rem; }
+
+.devstory-teaser-copy p:last-child { margin-bottom: 0; }
+
+.devstory-teaser-copy .section-number { margin: 0; }
+
+.devstory-teaser-copy h3 {
+  margin: .5rem 0 1.3rem;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-weight: 400;
+  font-size: clamp(1.3rem, 3vw, 1.85rem);
+  line-height: 1.6;
+  letter-spacing: .06em;
+}
+
+.devstory-teaser-note {
+  color: var(--muted);
+  font-size: .8rem;
+  line-height: 1.85;
+}
+
+.devstory-teaser-link a {
+  color: var(--blue);
+  font-size: .84rem;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(107, 169, 219, .45);
+}
+
+.devstory-teaser-link a:hover,
+.devstory-teaser-link a:focus-visible {
+  color: #fff;
+  border-bottom-color: rgba(232, 237, 244, .9);
+}
+
 /* どのプランに声が入るかを、試聴のすぐ下で明示する。 */
 .voice-sample-scope {
   margin: 2rem 0 0;
@@ -894,9 +1020,12 @@ footer {
   .voice-layout,
   .romaco-panel,
   .free-card,
-  .devstory-card {
+  .devstory-card,
+  .devstory-teaser {
     grid-template-columns: 1fr;
   }
+
+  .devstory-short { margin-inline: auto; }
 
   .release-group { grid-template-columns: 1fr; gap: 0; }
 

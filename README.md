@@ -90,6 +90,7 @@ URLが未設定のまま（空、または `REPLACE-WITH` を含む）の場合�
 - `voice-playback.png`：異常な再生待機
 - `corridor.png`：購入者特典
 - `door.png`：最後のCTA
+- `devstory-short-poster.jpg`：開発裏話配信の宣伝ショート動画のサムネイル
 - `voice/sample-voice.mp3`：フルボイス版のサンプルボイス（約28秒）
 
 ## サンプルボイスの運用
@@ -103,3 +104,15 @@ URLが未設定のまま（空、または `REPLACE-WITH` を含む）の場合�
 - JavaScript が動かない環境では、ブラウザ標準の再生コントロールがそのまま残ります
 - 試聴の計測は `lp_voice_play` という名前で `dataLayer` へ送ります。1回の閲覧につき1回だけです（CTAクリックの `lp_cta_click` とは混ざりません）
 - **どのプランに声が入るかを、必ず試聴のそばに書いてください。** 通常版と体験版にボイスは付きません
+
+## 開発裏話配信の宣伝ショート動画
+
+「ゲーム開発裏話配信【アーカイブ版】」のセクションに、YouTube ショートを埋め込んでいます。
+
+**ページを開いた時点では YouTube へ接続しません。** 表示しているのはサムネイル画像だけで、再生ボタンが押されたときに初めてプレイヤー（`youtube-nocookie.com`）を読み込み、その場で差し替えます。ページの読み込みが重くならず、観ない人の閲覧情報が YouTube へ渡ることもありません。
+
+- 動画を差し替えるときは、`index.html` の `data-video-id`（YouTube の動画ID）と `data-video-title`（プレイヤーの `title`。読み上げに使われます）を直します
+- サムネイルは `assets/devstory-short-poster.jpg`（720×1280）です。縦長のまま同名で上書きするのが最も安全です。別名にする場合は `index.html` の `src` も直してください
+- **自動再生はしません。** 再生は必ず利用者の操作から始まります（操作のあとは、そのまま音が出ます）
+- JavaScript が動かない環境では再生ボタンが効きません。そのため、すぐ下に「YouTubeで観る」の直リンクを必ず置いておきます
+- 計測は `lp_short_play` という名前で `dataLayer` へ送ります。`location` は、その場で再生したときが `devstory_short_inline`、YouTube へ移動したときが `devstory_short_youtube` です（CTAクリックの `lp_cta_click` とは混ざりません）

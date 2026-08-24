@@ -268,6 +268,43 @@
     }
   }
 
+  // YouTubeのショート動画。ページ表示の時点では接続せず、
+  // ボタンが押されたときだけプレイヤーを読み込んで差し替える。
+  // 自動再生はしない（読み込み自体がユーザーの操作の結果なので、そのまま再生する）。
+  document.querySelectorAll("[data-youtube-facade]").forEach((facade) => {
+    facade.addEventListener("click", () => {
+      const videoId = facade.dataset.videoId;
+      if (!videoId) return;
+
+      const params = new URLSearchParams({
+        autoplay: "1",
+        playsinline: "1",
+        rel: "0"
+      });
+
+      const frame = document.createElement("iframe");
+      frame.className = "devstory-short-frame";
+      frame.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?${params}`;
+      frame.title = facade.dataset.videoTitle || "YouTube動画";
+      frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      frame.referrerPolicy = "strict-origin-when-cross-origin";
+      frame.allowFullscreen = true;
+
+      // 押したボタンが消えるので、キーボード操作の位置をプレイヤーへ移す。
+      facade.replaceWith(frame);
+      frame.focus();
+    }, { once: true });
+  });
+
+  // ショート動画を観た回数。購入CTAの数字（lp_cta_click）とは混ぜない。
+  document.addEventListener("click", (event) => {
+    const target = event.target.closest("[data-short-watch]");
+    if (!target) return;
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: "lp_short_play", location: target.dataset.shortWatch });
+  });
+
   // Analytics hook. Connect this to GA4, Plausible, or another tool before launch.
   document.addEventListener("click", (event) => {
     const target = event.target.closest("[data-event]");
