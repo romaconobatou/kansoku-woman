@@ -82,7 +82,7 @@
       hero: {
         href: boothUrl,
         label: "製品版を購入する",
-        note: "BOOTHで販売中です。810円〜11,810円（税込）の3プランです。"
+        note: "BOOTHで販売中です。製品版は810円（税込）です。"
       },
       free: {
         href: urls.freeGame,

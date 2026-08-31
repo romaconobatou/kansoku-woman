@@ -405,7 +405,7 @@ h1 {
   border: 1px solid var(--line);
 }
 
-/* サンプルボイス。フルボイス版の価値を、買う前に聞いて確かめてもらうためのブロック。 */
+/* サンプルボイス。フルボイス版にどんな声が入るかを聞いてもらうためのブロック。 */
 .voice-sample {
   margin-top: clamp(3rem, 8vw, 6rem);
   padding: clamp(1.5rem, 5vw, 3rem);
@@ -516,7 +516,7 @@ h1 {
   letter-spacing: .12em;
 }
 
-/* 開発裏話配信。本文を左、視聴条件を右に並べる。 */
+/* 開発裏話配信（2026年8月に実施・終了）。本文を左、配信の情報を右に並べる。 */
 .devstory-card {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
@@ -839,6 +839,38 @@ h1 {
 .plan--featured {
   background: linear-gradient(160deg, rgba(13, 30, 42, .96), var(--bg-soft));
   box-shadow: inset 0 0 0 1px rgba(107, 169, 219, .45);
+}
+
+/* 販売を終了したプラン。カードは残したまま、いま買えないことを一目で分かるようにする。
+   9月の期間限定 再販でこの状態を解除するため、削除ではなく打ち消し表示で扱う。 */
+.plan--ended {
+  opacity: .62;
+}
+
+.plan-status {
+  display: inline-block;
+  margin: .4rem 0 .6rem;
+  padding: .2rem .6rem;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .72rem;
+  letter-spacing: .18em;
+}
+
+.plan-ended-note {
+  margin: 0 0 1.1rem;
+  color: var(--muted);
+  font-size: .78rem;
+  line-height: 1.7;
+}
+
+/* セクション見出しに添える補足。販売状況の但し書きなどに使う。 */
+.section-note {
+  margin: .8rem 0 0;
+  color: var(--muted);
+  font-size: .85rem;
+  line-height: 1.8;
 }
 
 .bonus-plans {

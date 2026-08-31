@@ -25,6 +25,6 @@ window.KANSOKU_CONFIG = {
     substack: "https://romaco.substack.com/subscribe?next=https%3A%2F%2Fsubstack.com%2F%40romaco&utm_source=profile-page&utm_medium=web&utm_campaign=substack_profile&just_signed_up=true",
     freeGame: "https://kansoku-woman-trial.netlify.app/",
     boothShop: "https://romaco0810.booth.pm/",
-    boothProduct: "https://romaco0810.booth.pm/items/8668950"
+    boothProduct: "https://romaco0810.booth.pm/items/8791129"
   }
 };
