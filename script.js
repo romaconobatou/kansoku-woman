@@ -92,7 +92,9 @@
       product: {
         href: boothUrl,
         label: "BOOTHで購入する",
-        note: "ロマ子様の初ボイス付きゲームです。"
+        // フルボイス版の販売終了（2026-08-31）にあわせて注記を外した。
+        // 空文字のときは <small> ごと描画しない。
+        note: ""
       },
       final: {
         href: boothUrl,
@@ -138,10 +140,14 @@
     const strong = document.createElement("strong");
     strong.textContent = content.label;
 
-    const small = document.createElement("small");
-    small.textContent = content.note;
+    link.append(strong);
 
-    link.append(strong, small);
+    // note が空のときは <small> を作らない。空要素が残ると、ボタンの下に無駄な余白が出る。
+    if (content.note) {
+      const small = document.createElement("small");
+      small.textContent = content.note;
+      link.append(small);
+    }
     slot.append(link);
 
     if (!usable) {
