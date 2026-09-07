@@ -516,7 +516,7 @@ h1 {
   letter-spacing: .12em;
 }
 
-/* 開発裏話配信（2026年8月に実施・終了）。本文を左、配信の情報を右に並べる。 */
+/* 開発裏話（第一話・第二話）。本文を左、開催情報を右に並べる。 */
 .devstory-card {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
@@ -537,6 +537,48 @@ h1 {
 .devstory-info dd {
   font-size: .92rem;
   line-height: 1.8;
+}
+
+/* カードを縦に積む。上が次回開催分、下が終了済み。 */
+.devstory-card + .devstory-card {
+  margin-top: clamp(1.2rem, 3vw, 2rem);
+}
+
+/* 次回開催分。枠だけ少し明るくして、終了済みとの差を作る。 */
+.devstory-card--next {
+  border-color: rgba(107, 169, 219, .55);
+}
+
+/* 終了済み。読みにくくならない範囲で主張を下げる（不透明度は落とさない）。 */
+.devstory-card--past {
+  border-color: var(--line);
+  background: linear-gradient(135deg, rgba(10, 16, 24, .9), rgba(5, 8, 13, .96));
+}
+
+/* 「開催予定」「終了しました」の状態表示。プランカードの販売状態と同じ形にする。 */
+.devstory-status {
+  display: inline-block;
+  margin: 0 0 .9rem;
+  padding: .2rem .6rem;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .72rem;
+  letter-spacing: .18em;
+}
+
+.devstory-status--next {
+  border-color: rgba(107, 169, 219, .55);
+  color: var(--blue);
+}
+
+.devstory-episode {
+  margin: 0 0 1.3rem;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-weight: 400;
+  font-size: clamp(1.25rem, 3vw, 1.6rem);
+  line-height: 1.6;
+  letter-spacing: .06em;
 }
 
 /* 宣伝用ショート動画。縦長なので幅を絞り、説明と横並びにする。 */
