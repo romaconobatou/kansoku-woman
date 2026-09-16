@@ -10,7 +10,8 @@ publish/
 netlify-redirect/
 
 # 内部資料。公開リポジトリには載せない。
-# 公開してよい場合は、以下の3行を削除してから git add する。
+# 公開してよい場合は、以下の4行を削除してから git add する。
+AGENTS.md
 CLAUDE.md
 CONTENT_NOTES.md
 .project-status.json
