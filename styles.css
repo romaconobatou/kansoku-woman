@@ -319,6 +319,83 @@ h1 {
   line-break: strict;
 }
 
+/* お知らせ（アップデート・期間限定の再販）。ヒーロー直後に置く短いセクション。 */
+.news {
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.news .section-heading {
+  margin-bottom: clamp(1.8rem, 4vw, 3rem);
+}
+
+/* 再販が終わってカードが1枚になったら、残ったカードが横幅いっぱいに広がる。 */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 1px;
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.news-card {
+  padding: clamp(1.4rem, 4vw, 2.5rem);
+  background: linear-gradient(135deg, rgba(15, 28, 42, .92), rgba(5, 8, 13, .96));
+}
+
+.news-card--resale {
+  background: linear-gradient(135deg, rgba(53, 15, 25, .6), rgba(5, 8, 13, .96));
+}
+
+.news-card p {
+  margin: 0 0 .9rem;
+  line-height: 1.85;
+}
+
+.news-label {
+  color: var(--blue);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .72rem;
+  letter-spacing: .18em;
+}
+
+.news-card--resale .news-label {
+  color: var(--red);
+}
+
+.news-card h3 {
+  margin: 0 0 .8rem;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  font-weight: 400;
+  font-size: clamp(1.2rem, 3vw, 1.55rem);
+  line-height: 1.6;
+  letter-spacing: .06em;
+}
+
+.news-lead {
+  color: #fff;
+}
+
+.news-card .plan-price {
+  margin: .4rem 0 1rem;
+}
+
+.news-plans {
+  color: var(--muted);
+  font-size: .78rem;
+}
+
+.news-plans a {
+  color: var(--blue);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(107, 169, 219, .45);
+}
+
+.news-plans a:hover,
+.news-plans a:focus-visible {
+  color: #fff;
+  border-bottom-color: rgba(232, 237, 244, .9);
+}
+
 .story-layout,
 .voice-layout {
   display: grid;
@@ -884,9 +961,52 @@ h1 {
 }
 
 /* 販売を終了したプラン。カードは残したまま、いま買えないことを一目で分かるようにする。
-   9月の期間限定 再販でこの状態を解除するため、削除ではなく打ち消し表示で扱う。 */
+   再販中のカードは .plan--resale（下）に切り替え、再販が終わると script.js がこの状態へ戻す。 */
 .plan--ended {
   opacity: .62;
+}
+
+/* 期間限定 再販中（と再販前の予告）のプラン。販売中カード（.plan--featured）と同じ強調にする。 */
+.plan--resale {
+  background: linear-gradient(160deg, rgba(13, 30, 42, .96), var(--bg-soft));
+  box-shadow: inset 0 0 0 1px rgba(107, 169, 219, .45);
+}
+
+.plan-status--resale {
+  border-color: rgba(107, 169, 219, .55);
+  color: var(--blue);
+}
+
+/* プランカード内の補足（再販の期間など）。販売終了の但し書きと同じ見た目。 */
+.plan-note {
+  margin: 0 0 1.1rem;
+  color: var(--muted);
+  font-size: .78rem;
+  line-height: 1.7;
+}
+
+/* プランカード内の購入ボタン。カード幅に収める。 */
+.plan-cta {
+  margin: .2rem 0 1.1rem;
+}
+
+.plan-cta .cta {
+  min-width: 0;
+  width: 100%;
+  padding: .8rem .6rem;
+  text-align: center;
+}
+
+/* 4列のプランカードでも1行に収まる大きさにする。 */
+.plan-cta .cta strong {
+  font-size: .9rem;
+  letter-spacing: .04em;
+}
+
+/* hidden 属性を、display を指定した要素（.release-group など）でも効かせる。
+   script.js が再販の状態に合わせて [data-resale-only] の表示を切り替えるために必要。 */
+[hidden] {
+  display: none !important;
 }
 
 .plan-status {

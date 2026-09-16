@@ -68,10 +68,57 @@
               <strong>810円（税込）</strong>
             </div>
           </div>
+          <!-- フルボイス版の期間限定 再販。config.js の resale と script.js が、再販前は予告、再販中は価格を出し、終了後は消す。 -->
+          <div class="release-group" data-resale-only="before" hidden>
+            <div class="release-item">
+              <span>フルボイス版</span>
+            </div>
+            <div class="release-item release-item--solo">
+              <strong>9月21日〜30日 再販</strong>
+            </div>
+          </div>
+          <div class="release-group" data-resale-only="during" hidden>
+            <div class="release-item">
+              <span>フルボイス版</span>
+            </div>
+            <div class="release-item release-item--solo">
+              <strong>8,100円（税込）・9月30日まで</strong>
+            </div>
+          </div>
         </div>
 
         <div class="hero-cta" data-phase-slot="hero"></div>
         <p class="micro-copy">今度は、こちらから見ています。</p>
+      </div>
+    </section>
+
+    <!-- お知らせ。フルボイス版のアップデート「観測禁止」と、それを記念した期間限定 再販（2026-09-21〜09-30）。
+         再販のカードは config.js の resale で、再販前は予告、再販中は購入ボタン、終了後は非表示になる。 -->
+    <section class="section news" id="news" aria-labelledby="news-title">
+      <div class="section-heading">
+        <p class="section-number">NEWS</p>
+        <h2 id="news-title">フルボイス版に、<br>新しい結末がひとつ。</h2>
+      </div>
+
+      <div class="news-grid">
+        <article class="news-card">
+          <p class="news-label">UPDATE ／ フルボイス版のみ</p>
+          <h3>特別ルート「観測禁止」追加</h3>
+          <p class="news-lead">ロマ子様からのプレゼントです。</p>
+          <p>メニュー画面に追加された「観測禁止」ボタンから、特別ルートを遊べます。エンディングが1本追加されます。</p>
+          <p class="news-plans">対象：フルボイス版（全力応援版を購入した方も遊べます）。製品版・体験版には含まれません。</p>
+        </article>
+
+        <article class="news-card news-card--resale" data-resale-only="before during">
+          <p class="news-label">RESALE ／ 観測禁止記念</p>
+          <h3>フルボイス版を、期間限定で再販</h3>
+          <p class="news-lead" data-resale-only="before">2026年9月21日（月）から9月30日（水）まで</p>
+          <p class="news-lead" data-resale-only="during" hidden>2026年9月30日（水）まで再販中</p>
+          <p>「観測禁止」の追加を記念して、2026年8月31日に販売を終了したフルボイス版を、期間限定で再販します。</p>
+          <p class="plan-price">8,100円<span>（税込）</span></p>
+          <p class="plan-cta" data-resale-only="during" hidden><a class="cta secondary" data-resale-link href="#"><strong>フルボイス版を購入する</strong></a></p>
+          <p class="news-plans"><a href="#product">プランの違いを見る</a></p>
+        </article>
       </div>
     </section>
 
@@ -140,7 +187,7 @@
           <p>同じ記録を観測しても、見えてくる真実はひとつではありません。</p>
           <p>選択の違いによって、彼女の存在は異なる輪郭を持ち始めます。</p>
           <p>この作品のテーマである「観測」を、マルチエンディングによって、さらに深く体験してください。</p>
-          <p>フルボイス版と全力応援版では、そのすべてを罵尻ロマ子様のフルボイスで楽しめました（2026年8月31日をもって販売終了）。</p>
+          <p>フルボイス版と全力応援版では、そのすべてを罵尻ロマ子様のフルボイスで楽しめます。フルボイス版は、2026年9月21日から9月30日まで期間限定で再販します（全力応援版は2026年8月31日をもって販売終了）。</p>
           <p>小さな息遣い。</p>
           <p>近すぎる肉声。</p>
           <p>わずかな沈黙。</p>
@@ -182,7 +229,7 @@
           </div>
         </div>
 
-        <p class="voice-sample-scope">この声が入るのは、<strong>フルボイス版</strong>と<strong>全力応援版</strong>です。どちらも2026年8月31日をもって販売を終了しました。体験版と製品版に、ボイスは付きません。</p>
+        <p class="voice-sample-scope">この声が入るのは、<strong>フルボイス版</strong>と<strong>全力応援版</strong>です。フルボイス版は、2026年9月21日から9月30日まで期間限定で再販します。全力応援版は、2026年8月31日をもって販売を終了しました。体験版と製品版に、ボイスは付きません。</p>
         <p class="voice-sample-note">ロマ子様にとって、初のフルボイス付きゲームです。</p>
       </div>
     </section>
@@ -191,7 +238,7 @@
       <div class="section-heading">
         <p class="section-number">OBSERVER BENEFITS</p>
         <h2 id="bonuses-title">購入者だけが観測できる特典です。</h2>
-        <p class="section-note">フルボイス版・全力応援版は、2026年8月31日をもって販売を終了しました。以下は、販売当時の特典です。</p>
+        <p class="section-note">フルボイス版・全力応援版の特典です。フルボイス版は、2026年9月21日から9月30日まで期間限定で再販します。全力応援版は、2026年8月31日をもって販売を終了しました。</p>
       </div>
 
       <div class="bonus-grid">
@@ -203,12 +250,18 @@
         </article>
         <article>
           <p class="bonus-index">02</p>
+          <h3>開発裏話アーカイブの視聴</h3>
+          <p>ゲーム開発裏話 第一話・第二話のアーカイブを、2026年9月30日まで視聴できます。</p>
+          <p class="bonus-plans">対象：フルボイス版／全力応援版</p>
+        </article>
+        <article>
+          <p class="bonus-index">03</p>
           <h3>ロマ子様直筆デジタルメッセージ</h3>
           <p>ロマ子様直筆のデジタルメッセージをお届けします。</p>
           <p class="bonus-plans">対象：全力応援版のみ</p>
         </article>
         <article>
-          <p class="bonus-index">03</p>
+          <p class="bonus-index">04</p>
           <h3>限定ASMRボイス「観測しちゃダメ！！」</h3>
           <p>約20分の限定ASMRボイスが付属します。</p>
           <p class="bonus-plans">対象：全力応援版のみ</p>
@@ -220,7 +273,7 @@
       <div class="section-heading">
         <p class="section-number">DEVELOPMENT STORIES</p>
         <h2 id="devstory-title">ゲーム開発裏話</h2>
-        <p class="section-note">フルボイス版・全力応援版の購入者へ向けて、開発の裏側をロマ子様が話す集まりです。第一話・第二話とも、アーカイブを2026年9月30日まで視聴できます（両プランの購入者限定）。</p>
+        <p class="section-note">フルボイス版・全力応援版の購入者へ向けて、開発の裏側をロマ子様が話す集まりです。第一話・第二話とも、アーカイブを2026年9月30日まで視聴できます（両プランの購入者限定。再販期間中にフルボイス版を購入した方も対象です）。</p>
       </div>
 
       <!-- 第一話・第二話とも、アーカイブを 2026-09-30 まで配信中（2026-09-17 オーナー決定）。
@@ -338,18 +391,37 @@
             <li>マルチエンディング全編プレイ可能</li>
           </ul>
         </article>
-        <article class="plan plan--ended">
+        <!-- フルボイス版の期間限定 再販（2026-09-21〜09-30）。
+             config.js の resale と script.js が、before（予告）／during（再販中）／after（終了）を端末時計で切り替える。
+             3つの文面はすべてここに書き、当てはまるものだけ表示する。JSが動かない環境では before（予告）が見える。 -->
+        <article class="plan plan--resale" data-resale-state="before">
           <h3>フルボイス版</h3>
-          <p class="plan-status">販売終了</p>
-          <p class="plan-ended-note">2026年8月31日をもって販売を終了しました。</p>
+          <div data-resale-only="before">
+            <p class="plan-status plan-status--resale">9月21日〜30日 再販</p>
+            <p class="plan-price">8,100円<span>（税込）</span></p>
+            <p class="plan-note">2026年8月31日で販売を終了しましたが、2026年9月21日から9月30日まで期間限定で再販します。</p>
+          </div>
+          <div data-resale-only="during" hidden>
+            <p class="plan-status plan-status--resale">再販中（9月30日まで）</p>
+            <p class="plan-price">8,100円<span>（税込）</span></p>
+            <p class="plan-note">2026年9月30日までの期間限定です。</p>
+            <p class="plan-cta"><a class="cta secondary" data-resale-link href="#"><strong>フルボイス版を購入する</strong></a></p>
+          </div>
+          <div data-resale-only="after" hidden>
+            <p class="plan-status">販売終了</p>
+            <p class="plan-note">2026年9月30日をもって、再販を終了しました。</p>
+          </div>
           <ul class="plan-features">
             <li>マルチエンディング全編プレイ可能</li>
             <li>ロマ子様によるフルボイス</li>
+            <li>フルボイス版限定エンドあり</li>
+            <li>「観測禁止」特別ルート（エンディング1本追加）</li>
           </ul>
           <p class="plan-sample"><a href="#voice-sample">声のサンプルを聞く</a></p>
-          <p class="plan-bonus-heading">当時の特典</p>
+          <p class="plan-bonus-heading">特典</p>
           <ul class="plan-features">
             <li>クレジットに名前記載</li>
+            <li>開発裏話 第一話・第二話のアーカイブ視聴（2026年9月30日まで）</li>
           </ul>
         </article>
         <article class="plan plan--ended">
@@ -408,9 +480,12 @@
         </details>
         <details>
           <summary>販売プランの違いは何ですか？</summary>
-          <p>現在販売しているのは、体験版（無料）と製品版（810円）の2つです。製品版は、マルチエンディング全編をプレイできます。ロマ子様のフルボイスが入るフルボイス版と、さらに直筆デジタルメッセージ・限定ASMRボイスが付く全力応援版は、2026年8月31日をもって販売を終了しました。</p>
+          <p>いつでも購入できるのは、体験版（無料）と製品版（810円）です。製品版は、マルチエンディング全編をプレイできます。ロマ子様のフルボイスが入るフルボイス版（8,100円）は、2026年9月21日から9月30日まで期間限定で再販します。さらに直筆デジタルメッセージ・限定ASMRボイスが付く全力応援版は、2026年8月31日をもって販売を終了しました。</p>
         </details>
         <details>
+          <summary>「観測禁止」とは何ですか？</summary>
+          <p>フルボイス版のメニュー画面に追加された、特別ルートへの入口です。エンディングが1本追加されます。フルボイス版・全力応援版の購入者は、追加費用なしで遊べます。製品版には含まれません。</p>
+        </details>        <details>
           <summary>体験版と製品版でストーリーは同じですか？</summary>
           <p>体験版はノーマルエンドまでです。製品版では、複数の結末を楽しめます。</p>
         </details>

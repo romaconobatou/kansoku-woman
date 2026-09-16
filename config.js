@@ -16,11 +16,23 @@
  * fullReleaseAt を過ぎると購入ボタンが boothProduct へ直接案内します。
  * その時刻までにBOOTHの商品ページを公開しておいてください。
  * 非公開のままだと、購入ボタンが404ページへ飛びます。
+ *
+ * resale:
+ * フルボイス版の期間限定 再販（2026-09-21〜09-30）。
+ * start より前は「9月21日から再販」の予告、start〜end は購入リンク付きの「再販中」、
+ * end を過ぎると「販売終了」へ自動で戻ります。判定は閲覧者の端末時計です。
+ * boothProduct は再販に使う旧商品ページ（items/8668950）。start までに公開しておいてください。
+ * 再販の表示を出さないときは start と end を null にします。
  */
 window.KANSOKU_CONFIG = {
   phase: "pre_register",
   freeReleaseAt: "2026-08-01T20:10:00+09:00",
   fullReleaseAt: "2026-08-10T00:00:00+09:00",
+  resale: {
+    start: "2026-09-21T00:00:00+09:00",
+    end: "2026-09-30T23:59:59+09:00",
+    boothProduct: "https://romaco0810.booth.pm/items/8668950"
+  },
   urls: {
     substack: "https://romaco.substack.com/subscribe?next=https%3A%2F%2Fsubstack.com%2F%40romaco&utm_source=profile-page&utm_medium=web&utm_campaign=substack_profile&just_signed_up=true",
     freeGame: "https://kansoku-woman-trial.netlify.app/",

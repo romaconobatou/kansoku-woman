@@ -158,6 +158,52 @@
     }
   });
 
+  // フルボイス版の期間限定 再販（config.resale）。
+  // before: 再販前（予告）／during: 再販中（購入リンクを出す）／after: 終了（販売終了へ戻す）
+  // 判定は閲覧者の端末時計。日時が無い・壊れているときは after（販売終了）として扱う。
+  const resolveResale = () => {
+    const resale = config.resale || {};
+    const start = Date.parse(resale.start || "");
+    const end = Date.parse(resale.end || "");
+    if (Number.isNaN(start) || Number.isNaN(end)) return "after";
+    const now = Date.now();
+    if (now < start) return "before";
+    if (now <= end) return "during";
+    return "after";
+  };
+
+  const resaleState = resolveResale();
+  const resaleUrl = (config.resale || {}).boothProduct;
+
+  // 再販するプランのカード。終了後は販売終了プランと同じ見た目（打ち消し表示）へ戻す。
+  document.querySelectorAll("[data-resale-state]").forEach((node) => {
+    node.dataset.resaleState = resaleState;
+    node.classList.toggle("plan--ended", resaleState === "after");
+    node.classList.toggle("plan--resale", resaleState !== "after");
+  });
+
+  // 状態ごとの文面。HTMLに3種類とも書いてあり、当てはまるものだけ表示する。
+  // data-resale-only="before during" のように、空白区切りで複数の状態を指定できる。
+  document.querySelectorAll("[data-resale-only]").forEach((node) => {
+    node.hidden = !node.dataset.resaleOnly.split(/\s+/).includes(resaleState);
+  });
+
+  // 再販中だけ表示される購入リンク。URLが未設定なら他のCTAと同じく注意を出す。
+  document.querySelectorAll("[data-resale-link]").forEach((link) => {
+    const usable = isUsableUrl(resaleUrl);
+    link.href = usable ? resaleUrl : "#";
+    link.target = usable ? "_blank" : "_self";
+    link.rel = usable ? "noopener noreferrer" : "";
+    link.dataset.event = "resale_fullvoice_cta";
+
+    if (!usable) {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.alert("公開前に config.js のURLを差し替えてください。");
+      });
+    }
+  });
+
   // Special Thanks: supporters.js の配列を読み取り、書かれた順のまま一覧表示する。
   const supportersConfig = window.KANSOKU_SUPPORTERS || {};
   const rawSupporters = Array.isArray(supportersConfig.supporters) ? supportersConfig.supporters : [];
