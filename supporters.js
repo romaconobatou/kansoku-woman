@@ -24,6 +24,7 @@ window.KANSOKU_SUPPORTERS = {
     "BG様",
     "佐藤良平様",
     "バク様",
-    "リツト様"
+    "リツト様",
+    "datemakiくん"
   ]
 };
