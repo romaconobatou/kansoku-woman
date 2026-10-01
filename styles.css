@@ -319,7 +319,7 @@ h1 {
   line-break: strict;
 }
 
-/* お知らせ（アップデート・期間限定の再販）。ヒーロー直後に置く短いセクション。 */
+/* お知らせ（アップデート・期間限定の再販）。ゲーム開発裏話の直前に置く短いセクション。 */
 .news {
   padding-block: clamp(3.5rem, 7vw, 6rem);
 }
@@ -452,6 +452,11 @@ h1 {
 .bonus-grid article {
   background: var(--bg-soft);
   padding: clamp(1.4rem, 4vw, 2.5rem);
+}
+
+/* 特典が奇数枚のときは、先頭のカードを横幅いっぱいにして空きマスを作らない。 */
+.bonus-grid article:first-child:nth-last-child(odd) {
+  grid-column: 1 / -1;
 }
 
 .bonus-index {
